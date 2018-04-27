@@ -1,0 +1,56 @@
+<!--
+  Generated template for the VenderPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Vender Articulo</ion-title>
+
+    <ion-buttons end>
+        <button ion-button (click)="search()">
+          <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+ 
+</ion-header>
+
+
+<ion-content padding class="vender">
+
+  <ion-item>
+    <ion-avatar item-start class="img" (click)="onSelectPhoto()">
+      <img src="assets/imgs/noimage.png">
+    </ion-avatar> 
+  </ion-item>
+  <form [formGroup]="form" (ngSubmit)="saveData()" class="form">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Titulo:</ion-label>
+        <ion-input formControlName="Titulo" type="text" placeholder="Titulo"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label stacked>Descripcion:</ion-label>
+        <ion-textarea formControlName="Descripcion" type="text" placeholder="Descripcion"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Precio:</ion-label>
+        <ion-input formControlName="Precio" type="text" placeholder="Precio"></ion-input>
+      </ion-item>
+    
+      <button ion-button block type="submit">Publicar</button>
+    </ion-list>
+  </form>
+
+</ion-content>

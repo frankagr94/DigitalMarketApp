@@ -1,0 +1,92 @@
+<ion-header>
+    <ion-navbar no-border-bottom color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>DigitalMarket</ion-title>
+  
+      <ion-buttons end>
+        <button ion-button (click)="search()">
+          <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button ion-button (click)="goToCart()">
+          <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+      <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+  
+  <ion-content class="home">
+    <!-- Declaracion del Slider -->
+    <ion-slides autoplay="5000" loop="true" speed="1000" pager #adSlider (ionSlideWillChange)="trackEvent()" class="slider">
+      <ion-slide *ngFor="let banner of banners">
+        <img [src]="banner">
+      </ion-slide>
+    </ion-slides>
+
+    <!-- Parte de las categorias -->
+    <div class="barra">
+      <p class="text-barra">Categorias</p>
+    </div>
+    <ion-grid no-padding>
+      <ion-row>
+        <ion-col  (click)="openPage()">
+          <img src="assets/imgs/categorias/deporte.png" class="imagen-categoria"/>
+          <div class="centered">Deporte</div>
+        </ion-col>
+        <ion-col  (click)="openPage()">
+          <img src="assets/imgs/categorias/hogar.png" class="imagen-categoria"/>
+          <div class="centered">Hogar</div>
+        </ion-col>
+        <ion-col (click)="openPage()">
+          <img src="assets/imgs/categorias/comida.png" class="imagen-categoria"/>
+          <div class="centered">Comida</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col  (click)="openPage()">
+            <img src="assets/imgs/categorias/electrodomesticos.png" class="imagen-categoria"/>
+            <div class="centered">Tecnologia</div>
+          </ion-col>
+          <ion-col (click)="openPage()">
+            <img src="assets/imgs/categorias/moda.png" class="imagen-categoria"/>
+            <div class="centered">Moda</div>
+          </ion-col>
+          <ion-col (click)="openPage()">
+            <img src="assets/imgs/categorias/juguetes.png" class="imagen-categoria"/>
+            <div class="centered">Juguetes</div>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <!-- Parte de laos Populares -->
+    <div class="barra">
+        <p class="text-barra">Populares</p>
+    </div>
+
+    <ion-item class="item-populares">
+      <ion-scroll scrollX style="height:210px;">
+        <div class="scroll-item">
+          <ion-col col-33 *ngFor="let post of populares"  class="card card-1">
+            <div (click)="openArticulo(post)">
+              <img src="{{post.imagen}}" class="imagen-popular"/>
+              <div class="nombre-populares">
+                  <p class="text-nombre">{{post.nombre}}</p>
+              </div>
+              <div class="precio-populares">
+                  <p class="text-precio">BsF. {{post.precio}}</p>
+              </div>
+              <div>
+                  <p class="text-likes"><ion-icon name="star"></ion-icon> {{post.likes}}</p>
+              </div>
+            </div>
+          </ion-col>
+        </div>
+      </ion-scroll>
+    </ion-item>
+  </ion-content>

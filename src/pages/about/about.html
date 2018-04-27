@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Quienes somos</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="search()">
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="about">
+
+           <ion-card>
+              <img src="assets/imgs/2.png"/>
+              <ion-card-content>
+                <ion-card-title>
+                 <h2 class="titulo">Digital Market</h2>
+                  </ion-card-title>
+                <p class="parrafo">
+
+       Es una empresa de base tecnológica, dedicada a la Consultoría 
+       y el Desarrollo de Software Empresarial para Administraciones Públicas y Empresas Privadas
+        interesadas en mejorar sus procesos empresariales mediante la aplicación de las TIC.
+      </p>
+      
+                               
+                                 <ion-grid>
+                                    <ion-row col-12>
+                                      <ion-col col-5 >
+                                          <h4 class="V1" text-center>Ingenieros:</h4>
+                                          <h4 class="V1" text-center >Álvarez Genesis</h4>
+                                       <h4 class="V1" text-center>  Barreto Williannis,</h4> 
+                                         <h4 class="V1" text-center>Díaz Andreina , </h4>
+                                         <h4 class="V1" text-center> González Frank.</h4>
+                                      </ion-col>
+                                    
+                                      <ion-col col-7>
+                                        <ion-item>
+                                            <img class="V2" src="assets/imgs/logo.png"/>
+                                        </ion-item>
+
+                                      </ion-col>
+                                    </ion-row>
+                                  </ion-grid>
+
+                <ion-row>
+                    <ion-col>
+                      <button ion-button icon-left clear small>
+                        <ion-icon name="logo-instagram"></ion-icon>
+                        <div>DigitalMarket_Oficial</div>
+                      </button>
+                    </ion-col>
+                    <ion-col>
+                      <button ion-button icon-left clear small>
+                        <ion-icon name="logo-facebook"></ion-icon>
+                        <div>DigitalMarket</div>
+                      </button>
+                    </ion-col>
+                    
+                  </ion-row>
+                
+              </ion-card-content>
+            </ion-card>
+</ion-content>

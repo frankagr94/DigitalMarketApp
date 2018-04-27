@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Registrarse</ion-title>
+
+    <ion-buttons end>
+        <button ion-button (click)="search()">
+          <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+ 
+</ion-header>
+<ion-content>
+  
+<h4  text-center>Ingresa tus Datos</h4>
+<form [formGroup]="form" (ngSubmit)="saveData()">
+  <ion-list>
+    <ion-item>
+      <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+      <ion-label stacked>Usuario:</ion-label>
+      <ion-input formControlName="Usuario" type="text" placeholder="Usuario"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+      <ion-label stacked>Contraseña:</ion-label>
+      <ion-input formControlName="Contraseña" type="text" placeholder="Contraseña"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+      <ion-label stacked>Nombre:</ion-label>
+      <ion-input formControlName="Nombre" type="text" placeholder="Nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+      <ion-label stacked>Apellido:</ion-label>
+      <ion-input formControlName="Apellido" type="text" placeholder="Apellido"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+      <ion-label stacked>Telefono:</ion-label>
+      <ion-input formControlName="Telefono" type="text" placeholder="Telefono"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+      <ion-label stacked>Correo:</ion-label>
+      <ion-input formControlName="Correo" type="text" placeholder="Correo"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+        <ion-label stacked>Pais</ion-label>
+        <ion-select interface="popover" placeholder="Pais">
+            <ion-option value="Colombia">Colombia</ion-option>
+            <ion-option value="Venezuela">Venezuela</ion-option>
+            <ion-option value="Mexico">Mexico</ion-option>
+            <ion-option value="Argentina">Argentina</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+        <ion-label stacked>Estado</ion-label>
+        <ion-select interface="popover" placeholder="Estado">
+            <ion-option value="Lara">Lara</ion-option>
+            <ion-option value="Merida">Mérida</ion-option>
+            <ion-option value="Zulia">Zulia</ion-option>
+            <ion-option value="Falcon">Falcon</ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
+        <ion-label stacked>Ciudad</ion-label>
+        <ion-select interface="popover" placeholder="Ciudad">
+            <ion-option value="Barquisimeto">Barquisimeto</ion-option>
+            <ion-option value="Cabudare">Cabudare</ion-option>
+            
+        </ion-select>
+    </ion-item>
+  
+    <button ion-button block type="submit">Registrar</button>
+    
+  </ion-list>
+ 
+</form>
+
+</ion-content>

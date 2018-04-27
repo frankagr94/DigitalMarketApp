@@ -1,0 +1,50 @@
+.checkout {
+
+    .scroll-content {
+        margin-top: 56px !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+    
+    .card-ios{
+        margin-right: 0px;
+        margin-left: 0px;
+        width:100% !important;
+      }
+    
+      .card-content-md{
+        padding-left: 5px;
+        padding-right: 5px;
+        margin-top: 0px;
+        padding-bottom: 0px;
+       }
+    
+      .card-md{
+          padding-top: 0%;
+        margin-right: 10%;
+        margin-left: 1%;
+        margin-top: 0%;
+        width: 98% !important;
+      }
+    
+      .item-md{
+          border-bottom: 1px solid #e0e0e0;
+      }
+
+      .detail-row {
+          background: gray;
+          font-weight: bold;
+      }
+
+      h6{
+          margin-left: 5px;
+          margin-bottom: 0px;
+          padding-top: 5px;
+          margin-top: 5px;
+          font-weight: bold;
+      }
+    
+      ion-card-title{
+          text-align: center;
+      }
+    }

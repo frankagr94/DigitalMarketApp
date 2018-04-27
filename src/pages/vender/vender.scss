@@ -1,0 +1,32 @@
+
+.vender {
+	
+	ion-scroll {
+    white-space: nowrap;
+    height: 150px;
+	}
+
+	ion-scroll img {
+		height: 140px;
+		width: inherit;
+		margin: 10px; 
+		display: inline-block;
+	}
+    
+    ion-avatar {
+		color: blue;
+	}
+
+	.form {
+		margin-left: 0px;
+		margin-right: 2%;
+	}
+
+	ion-item img {
+		height: 150px;
+		width: inherit;
+		display: inline-block;
+		margin-left: 50%;
+		position: relative;
+	}
+}

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the VentasPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar no-border-bottom color="primary">
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Mis Ventas</ion-title>
+  
+      <ion-buttons end>
+        <button ion-button (click)="search()">
+          <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-buttons end>
+        <button ion-button (click)="goToCart()">
+          <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+      <ion-searchbar></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+  
+  <ion-content padding>
+      <div class="barra-activas">
+          <p class="texto-barra">Activas</p>
+      </div>
+      <ion-list>
+          <ion-item *ngFor="let act of activas">
+            <ion-thumbnail item-start>
+              <img src="{{act.imagen}}">
+            </ion-thumbnail>
+            <h2>{{act.nombre}}</h2>
+            <p>BsF. {{act.precio}}</p>
+            <p>{{act.fecha}}</p>
+          </ion-item>
+        </ion-list>
+
+    <div class="barra-cerradas">
+      <p class="texto-barra">Cerradas</p>
+    </div>
+      <ion-list>
+          <ion-item *ngFor="let ina of cerradas">
+            <ion-thumbnail item-start>
+              <img src="{{ina.imagen}}">
+            </ion-thumbnail>
+            <h2>{{ina.nombre}}</h2>
+            <p>BsF. {{ina.precio}}</p>
+            <p>{{ina.fecha}}</p>
+          </ion-item>
+        </ion-list>
+</ion-content>

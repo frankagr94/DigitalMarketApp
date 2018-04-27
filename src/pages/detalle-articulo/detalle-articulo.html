@@ -1,0 +1,82 @@
+
+
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Articulo</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="search()">
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="detalle-articulo">
+<ion-card>
+  <ion-item>
+    <ion-avatar item-start>
+      <img src="assets/imgs/avatar.jpg">
+    </ion-avatar>
+    <h2>Adam Cortés</h2>
+    <p>24 de Abril, 2018</p>
+  </ion-item>
+
+  <ion-card-title>
+      <p class="titulo-articulo">Cocina 4 Hornillas</p>
+  </ion-card-title>
+  <img src="assets/imgs/articulos/cocina.png">
+
+  <ion-card-content>
+    <div class="barra">
+      <p class="titulo-barra">Descripcion</p>
+    </div>
+    <div>
+      <p>Cocina 20” 4 Hornillas 110V Acero Inoxidable Pruna Viotto Cocina a gas. Calor y luz en un solo lugar. 
+        Diseño moderno. Sus funciones y modelo compacto te dan mas de lo que exiges. Parrillas de alto grosor esmaltadas
+        de alta resistencia térmica. Todo en un solo producto.
+      </p>
+    </div>
+    <div class="barra">
+      <p class="titulo-barra">Precio</p>
+    </div>
+    <div>
+        <h2 style="text-align: center;">250.000.000 Bs</h2>
+    </div>
+    <div>
+        <button ion-button color="primary" style="display: flex; justify-content: center;"><ion-icon name="cart"></ion-icon> Agregar al Carrito</button>
+    </div>
+    </ion-card-content>
+  <ion-row>
+
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="thumbs-up"></ion-icon>
+        <div>12 Likes</div>
+      </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button icon-left clear small>
+        <ion-icon name="text"></ion-icon>
+        <div>4 Comments</div>
+      </button>
+    </ion-col>
+    <ion-col center text-center>
+      <ion-note>
+        11h ago
+      </ion-note>
+    </ion-col>
+  </ion-row>
+</ion-card>
+
+</ion-content>
+

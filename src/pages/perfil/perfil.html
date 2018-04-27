@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mi perfil</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="search()">
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="perfil">
+  <!-- foto -->
+  <ion-item>
+      <ion-avatar item-start>
+        <img src="assets/imgs/1.png">
+      </ion-avatar> 
+  </ion-item>
+
+
+  <!-- Datos basicos  -->
+
+  <ion-list >
+          <ion-item >
+            <ion-icon name="person" item-start></ion-icon>
+           <h3>Deimon Garcia</h3>
+          </ion-item>
+         
+          <ion-item>
+              <ion-icon name="pin" item-start></ion-icon>
+            <h3> Venezuela </h3>
+            </ion-item>
+            <ion-item>
+            <ion-icon name="pricetags" item-start></ion-icon>
+         <h3>  Ing en informatica </h3>
+           </ion-item>
+           <ion-item>
+              <ion-icon name="call" item-start></ion-icon>
+          <h3> 0424-6759874 </h3>
+           </ion-item>
+             <ion-item>
+             <ion-icon name="logo-instagram" item-start></ion-icon>
+             <h3> DeimosG_94 </h3>
+                </ion-item>
+
+             <ion-grid>
+                <ion-row>
+                    <ion-col col-6></ion-col>
+                  </ion-row>
+
+                  <ion-row>
+             <ion-col col-5>
+               <button ion-button icon-right>
+                    Edital Perfil
+                    <ion-icon name=""></ion-icon>
+                  </button>
+                  </ion-col>
+                </ion-row>
+                </ion-grid>    
+    </ion-list>
+    
+</ion-content>
+

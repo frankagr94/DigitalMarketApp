@@ -1,0 +1,21 @@
+page-ventas {
+    
+    .barra-cerradas {
+        width: 100%;
+        height: 30px;
+        background: firebrick;
+    }
+
+    .barra-activas {
+        width: 100%;
+        height: 30px;
+        background: green;
+    }
+
+    .texto-barra{
+        font-size: 14px;
+        font-weight: bold;
+        padding-top: 8px;
+        text-align: center;
+    }
+}

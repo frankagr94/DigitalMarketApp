@@ -1,0 +1,84 @@
+<!--
+  Generated template for the CheckoutPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+	<ion-navbar no-border-bottom color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Procesar Compra</ion-title>
+
+		<ion-buttons end>
+			<button ion-button (click)="search()">
+				<ion-icon ios="ios-search" md="md-search"></ion-icon>
+			</button>
+		</ion-buttons>
+	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="checkout" style="background-color: #f4f4f4;">
+	<ion-card class="card-md">
+		<ion-card-content class="card-content-md">
+				<ion-card-title>Datos Instrumento de Pago</ion-card-title>
+				<ion-list>
+				  <ion-item>
+					<ion-label stacked>Tipo de Tarjeta de Crédito:</ion-label>
+					<ion-select interface="popover" placeholder="Seleccione una opción...">
+						<ion-option value="VISA">VISA</ion-option>
+						<ion-option value="MasterCard">MasterCard</ion-option>
+						<ion-option value="AmericanExpress">AmericanExpress</ion-option>
+					</ion-select>
+				  </ion-item>
+				  <ion-item>
+					<ion-label stacked>Nombre Tarjetahabiente:</ion-label>
+					<ion-input type="text" placeholder="Nombres y Apellidos"></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label stacked>Cédula o RIF:</ion-label>
+					<ion-input type="text" placeholder="Cédula sin puntos"></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label stacked>Teléfono Tarjetahabiente:</ion-label>
+					<ion-input type="text" placeholder="Celular o Fijo"></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label stacked>Numero de Tarjeta:</ion-label>
+					<ion-input type="text" placeholder="Nro de Tarjeta"></ion-input>
+				  </ion-item>
+				  <ion-item>
+					<ion-label stacked>Fecha de Vencimiento:</ion-label>
+					<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"placeholder="Dia/Mes/Año"></ion-datetime>
+				  </ion-item>
+				</ion-list>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card>
+		<ion-row class="detail-row">
+			<h6>Detalles de la Compra</h6>
+		</ion-row>
+		<ion-row>
+			<ion-col width-70>
+			  <p>Precio (2 Artículos)</p>
+			  <p>IVA</p>
+			  <p>Entrega</p>
+			</ion-col>
+			<ion-col width-30>
+				<p style="text-align: right;">BsF. 251.899.000</p>
+				<p style="text-align: right;color: #388e3c;">Free</p>
+				<p style="text-align: right;">A Convenir</p>
+			</ion-col>
+		</ion-row>
+	</ion-card>
+
+</ion-content>
+
+<ion-footer style="background-color: #fff;">
+	<ion-row>
+		<button ion-button full (click)="goToCheckout()">Pagar</button>
+	</ion-row>
+  </ion-footer>

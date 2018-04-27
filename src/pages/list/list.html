@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar no-border-bottom color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Categorias</ion-title>
+
+    <ion-buttons end>
+      <button ion-button (click)="search()">
+        <ion-icon ios="ios-search" md="md-search"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <ion-toolbar color="primary">
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home">
+  <!-- Parte de las categorias 
+  <ion-list>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/categorias/electrodomesticos.png">
+      </ion-thumbnail>
+      <button ion-item clear item-end>Electrodomésticos</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/categorias/ropa.png">
+      </ion-thumbnail>
+     <button ion-item clear item-end>Ropa</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/categorias/vehiculo.png">
+      </ion-thumbnail>
+      <button ion-item clear item-start>Vehículo</button>
+    </ion-item>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img src="assets/imgs/categorias/celular.png">
+      </ion-thumbnail>
+      <button ion-item clear item-start>Celulares</button>
+    </ion-item>
+  </ion-list>-->
+
+  <ion-list class="card-md">
+      <ion-row *ngFor="let cat of categorias" (click)="openCategoria(cat)">
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="{{cat.imagen}}">
+          </ion-avatar>
+          <h1>{{cat.nombre}}</h1>
+        </ion-item>
+        <div class="fila"></div>
+      </ion-row>
+  </ion-list>
+
+</ion-content>

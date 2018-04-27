@@ -1,0 +1,49 @@
+.about {
+    
+	ion-avatar {
+		color: blue;
+    }
+
+    .titulo { 
+        font-family: 'Helvetica', 'Verdana' 'Monaco';
+        font-weight: bold;
+	}
+	
+	.parrafo{
+		text-align : justify;
+	}
+
+    .V1 {
+        font-family: 'Helvetica', 'Verdana' 'Monaco';
+        font-weight: bold;
+	}
+	
+	.V2{
+		width: 200px;
+		height: 75px;
+	}
+	
+
+	ion-item img {
+		height: 100px;
+	}
+
+	.card-title-ios, .card-title-md {
+		white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    padding: 8px 10px 8px 10px;
+	}
+	
+	.discount {
+		font-size: 12px;
+		text-decoration: line-through;
+	}
+
+	.img-center {
+		margin-left: 50%;
+	}
+
+	$searchbar-md-background-color: blue;
+}
