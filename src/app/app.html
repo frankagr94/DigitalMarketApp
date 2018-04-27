@@ -3,7 +3,7 @@
     <ion-toolbar color="primary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
-        <img src="assets/imgs/logo.png" alt="">
+        <img src="assets/imgs/logo.png">
   </ion-header>
 
   <ion-content>
@@ -21,6 +21,13 @@
       <button ion-item menuClose *ngFor="let u of usuario" (click)="openPage(u)">
           <ion-icon item-left [name]="u.icon"></ion-icon>
           {{ u.title}}
+    </button>
+    <div class="barra">
+      <h5>Administrador</h5>
+    </div>
+    <button ion-item menuClose *ngFor="let a of admin" (click)="openPage(a)">
+          <ion-icon item-left [name]="a.icon"></ion-icon>
+          {{ a.title}}
     </button>
     </ion-list>
   </ion-content>

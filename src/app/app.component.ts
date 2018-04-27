@@ -13,6 +13,8 @@ import { PerfilPage } from '../pages/perfil/perfil';
 import { ComprasPage } from '../pages/compras/compras';
 import { VentasPage } from '../pages/ventas/ventas';
 import { VenderPage } from '../pages/vender/vender';
+import { AdminCategoriasPage } from '../pages/admin-categorias/admin-categorias';
+import { AdminUsuariosPage } from '../pages/admin-usuarios/admin-usuarios';
 import { RegistroPage } from '../pages/registro/registro';
 
 @Component({
@@ -25,6 +27,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, icon: string;}>;
   usuario: Array<{title: string, component: any, icon: string;}>;
+  admin: Array<{title: string, component: any, icon: string;}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
@@ -46,6 +49,11 @@ export class MyApp {
       { title: 'Mis Ventas', component: VentasPage, icon: 'md-briefcase' },
       { title: 'Mi Carrito', component: CarritoPage, icon: 'md-cart' }
     ];
+
+    this.admin = [
+      { title: 'Administrar Categorias', component: AdminCategoriasPage, icon: 'md-list' },
+      { title: 'Administrar Usuarios', component: AdminUsuariosPage, icon: 'ios-contacts' }
+    ]
 
   }
 

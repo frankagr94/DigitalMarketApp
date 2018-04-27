@@ -16,6 +16,8 @@ import { VentasPage } from '../pages/ventas/ventas';
 import { VenderPage } from '../pages/vender/vender';
 import { CheckoutPage } from '../pages/checkout/checkout';
 import { TimelinePage } from '../pages/timeline/timeline';
+import { AdminCategoriasPage } from '../pages/admin-categorias/admin-categorias';
+import { AdminUsuariosPage } from '../pages/admin-usuarios/admin-usuarios';
 import { DetalleArticuloPage } from '../pages/detalle-articulo/detalle-articulo';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -42,7 +44,9 @@ import { ImagePicker } from '@ionic-native/image-picker';
     VentasPage,
     TimelinePage,
     VenderPage,
-    CheckoutPage
+    CheckoutPage,
+    AdminCategoriasPage,
+    AdminUsuariosPage,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +70,9 @@ import { ImagePicker } from '@ionic-native/image-picker';
     VentasPage,
     TimelinePage,
     VenderPage,
-    CheckoutPage
+    CheckoutPage,
+    AdminCategoriasPage,
+    AdminUsuariosPage,
   ],
   providers: [
     StatusBar,

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DetalleArticuloPage } from '../detalle-articulo/detalle-articulo';
 import { CarritoPage } from '../carrito/carrito';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ArticulosPage page.
@@ -46,6 +47,10 @@ export class ArticulosPage {
 
   goToCart() {
     this.navCtrl.setRoot(CarritoPage);
+  }
+
+  goHome() {
+    this.navCtrl.setRoot(HomePage);
   }
 
 }

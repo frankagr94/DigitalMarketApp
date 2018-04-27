@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CarritoPage } from '../carrito/carrito';
 import { HomePage } from '../home/home';
 
 /**
- * Generated class for the PerfilPage page.
+ * Generated class for the AdminUsuariosPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,27 +11,28 @@ import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
-  selector: 'page-perfil',
-  templateUrl: 'perfil.html',
+  selector: 'page-admin-usuarios',
+  templateUrl: 'admin-usuarios.html',
 })
-export class PerfilPage {
+export class AdminUsuariosPage {
+
+  usuarios: Array<{imagen: string, nombre: string}>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.usuarios = [
+      { imagen: 'assets/imgs/1.png', nombre: 'Deimon Garcia' },
+      { imagen: 'assets/imgs/avatar.jpg', nombre: 'Manuel Perez' }
+    ]
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PerfilPage');
-  }
-
-  goToCart() {
-    this.navCtrl.setRoot(CarritoPage);
+    console.log('ionViewDidLoad AdminUsuariosPage');
   }
 
   goHome() {
     this.navCtrl.setRoot(HomePage);
-  }
-
-  search() {
   }
 
 }

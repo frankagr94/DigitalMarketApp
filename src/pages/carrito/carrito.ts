@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CheckoutPage } from '../checkout/checkout';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CarritoPage page.
@@ -23,8 +24,15 @@ export class CarritoPage {
     console.log('ionViewDidLoad CarritoPage');
   }
 
+  search() {
+  }
+
   goToCheckout() {
     this.navCtrl.setRoot(CheckoutPage);
   }
 
+  goHome() {
+    this.navCtrl.setRoot(HomePage);
+  }
+  
 }

@@ -6,6 +6,11 @@
     <ion-title>Categorias</ion-title>
 
     <ion-buttons end>
+        <button ion-button (click)="goHome()">
+          <ion-icon ios="ios-home" md="md-home"></ion-icon>
+        </button>
+      </ion-buttons>
+    <ion-buttons end>
       <button ion-button (click)="search()">
         <ion-icon ios="ios-search" md="md-search"></ion-icon>
       </button>
@@ -22,33 +27,6 @@
 </ion-header>
 
 <ion-content class="home">
-  <!-- Parte de las categorias 
-  <ion-list>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/categorias/electrodomesticos.png">
-      </ion-thumbnail>
-      <button ion-item clear item-end>Electrodomésticos</button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/categorias/ropa.png">
-      </ion-thumbnail>
-     <button ion-item clear item-end>Ropa</button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/categorias/vehiculo.png">
-      </ion-thumbnail>
-      <button ion-item clear item-start>Vehículo</button>
-    </ion-item>
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/imgs/categorias/celular.png">
-      </ion-thumbnail>
-      <button ion-item clear item-start>Celulares</button>
-    </ion-item>
-  </ion-list>-->
 
   <ion-list class="card-md">
       <ion-row *ngFor="let cat of categorias" (click)="openCategoria(cat)">

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CarritoPage } from '../carrito/carrito';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the ComprasPage page.
@@ -34,6 +35,13 @@ export class ComprasPage {
 
   goToCart() {
     this.navCtrl.setRoot(CarritoPage);
+  }
+
+  goHome() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  search() {
   }
 
 }

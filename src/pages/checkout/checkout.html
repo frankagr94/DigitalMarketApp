@@ -12,6 +12,11 @@
 		<ion-title>Procesar Compra</ion-title>
 
 		<ion-buttons end>
+				<button ion-button (click)="goHome()">
+					<ion-icon ios="ios-home" md="md-home"></ion-icon>
+				</button>
+			</ion-buttons>
+		<ion-buttons end>
 			<button ion-button (click)="search()">
 				<ion-icon ios="ios-search" md="md-search"></ion-icon>
 			</button>
@@ -79,6 +84,6 @@
 
 <ion-footer style="background-color: #fff;">
 	<ion-row>
-		<button ion-button full (click)="goToCheckout()">Pagar</button>
+		<button ion-button full>Pagar</button>
 	</ion-row>
   </ion-footer>

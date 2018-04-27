@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import {FormBuilder, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import { CarritoPage } from '../carrito/carrito';
 import { TimelinePage } from '../timeline/timeline';
+import { HomePage } from '../home/home';
 /**
  * Generated class for the LoginPage page.
  *
@@ -37,6 +38,13 @@ export class LoginPage {
 
   openPage() {
     this.navCtrl.setRoot(TimelinePage);
+  }
+
+  goHome() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  search() {
   }
   
  }

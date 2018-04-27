@@ -1,14 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ArticulosPage } from '../articulos/articulos';
 import { CarritoPage } from '../carrito/carrito';
 import { HomePage } from '../home/home';
 
+/**
+ * Generated class for the AdminCategoriasPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
+@IonicPage()
 @Component({
-  selector: 'page-list',
-  templateUrl: 'list.html'
+  selector: 'page-admin-categorias',
+  templateUrl: 'admin-categorias.html',
 })
-export class ListPage {
+export class AdminCategoriasPage {
 
   categorias: Array<{imagen: string, nombre: string, component: any;}>;
 
@@ -25,6 +33,10 @@ export class ListPage {
 
   }
 
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad AdminCategoriasPage');
+  }
+
   openCategoria(page) {
     this.navCtrl.setRoot(page.component);
   }
@@ -37,7 +49,4 @@ export class ListPage {
     this.navCtrl.setRoot(HomePage);
   }
 
-  search() {
-  }
-  
 }

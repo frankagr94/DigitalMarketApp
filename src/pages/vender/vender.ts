@@ -3,6 +3,7 @@ import { NavController, MenuController, Platform }from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ImagePicker } from '@ionic-native/image-picker';
 import { CarritoPage } from '../carrito/carrito';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the VenderPage page.
@@ -52,7 +53,7 @@ export class VenderPage {
   
       this.imagePicker.getPictures(options)
                       .then((results) => {
-                        let base64Image = results;
+                        /*let base64Image = results;*/
                       }, (err) => { 
                         console.log('error') });
     }
@@ -60,6 +61,13 @@ export class VenderPage {
 
   goToCart() {
     this.navCtrl.setRoot(CarritoPage);
+  }
+  
+  goHome() {
+    this.navCtrl.setRoot(HomePage);
+  }
+
+  search() {
   }
 
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, MenuController, Platform }from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarritoPage } from '../carrito/carrito';
+import { HomePage } from '../home/home';
 
 
 /**
@@ -50,6 +51,13 @@ form: FormGroup;
 
     goToCart() {
       this.navCtrl.setRoot(CarritoPage);
+    }
+
+    goHome() {
+      this.navCtrl.setRoot(HomePage);
+    }
+
+    search() {
     }
  
   }
