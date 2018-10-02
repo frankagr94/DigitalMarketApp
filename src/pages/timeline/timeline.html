@@ -22,23 +22,34 @@
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
       </button>
     </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="logout()">
+        <ion-icon ios="ios-log-out-outline" md="md-log-out"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   </ion-header>
 
 
 <ion-content padding>
-  <ion-card *ngFor="let art of articulos" (click)="openArticulo(art)">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+      </ion-refresher>
+
+  <ion-card *ngFor="let art of articulos">
     <ion-item>
       <ion-avatar item-start>
-        <img src="{{art.avatar}}">
+        <img-loader [src]="art.usuario.foto" fallback="http://res.cloudinary.com/digitalmarket/image/upload/v1528924814/sin_imagen.png" useImg></img-loader>
       </ion-avatar>
-      <h2>{{art.nombre_usuario}}</h2>
+      <h2>{{art.usuario.nombre}} {{art.usuario.apellido}}</h2>
       <p>{{art.fecha}}</p>
     </ion-item>
     <ion-card-title>
-        <p class="titulo-articulo">{{art.nombre}}</p>
+        <p class="titulo-articulo">{{art.titulo}}</p>
     </ion-card-title>
-    <img src="{{art.imagen}}">
+    <img-loader [src]="art.foto" fallback="http://res.cloudinary.com/digitalmarket/image/upload/v1528924814/sin_imagen.png" useImg></img-loader>
     <ion-card-content>
       <div class="barra">
         <p class="titulo-barra">Descripcion</p>
@@ -50,17 +61,17 @@
         <p class="titulo-barra">Precio</p>
       </div>
       <div>
-          <h2 style="text-align: center;">BsF. {{art.precio}}</h2>
+          <h2 style="text-align: center;">BsF. {{art.articulo.precio}}</h2>
       </div>
       <div>
-          <button ion-button color="primary" style="display: flex; justify-content: center;"><ion-icon name="cart"></ion-icon> Agregar al Carrito</button>
+          <button ion-button color="primary" (click)="agregarAlCarrito(art.articulo.id)" style="display: flex; justify-content: center;"><ion-icon name="cart"></ion-icon> Agregar al Carrito</button>
       </div>
       </ion-card-content>
     <ion-row>
       <ion-col>
         <button ion-button icon-left clear small>
           <ion-icon name="thumbs-up"></ion-icon>
-          <div>{{art.likes}} Likes</div>
+          <div (click)="doLike(art.id, like)"><label id="like">{{art.likes.length}}</label> Likes</div>
         </button>
       </ion-col>
       <ion-col>
@@ -68,11 +79,6 @@
           <ion-icon name="text"></ion-icon>
           <div>4 Comments</div>
         </button>
-      </ion-col>
-      <ion-col center text-center>
-        <ion-note>
-          11h ago
-        </ion-note>
       </ion-col>
     </ion-row>
   </ion-card>

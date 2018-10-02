@@ -1,0 +1,41 @@
+<!--
+  Generated template for the AdminCategoriasModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Agregar o Editar Categoria</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Por favor llene todos los campos.</p>
+  <form [formGroup]="categoriaForm">
+    <ion-list >
+      <ion-item>
+        <ion-label stacked>Nombre:</ion-label>
+        <ion-input type="text" formControlName="nombre" maxlength="20" [class.invalid]="!categoriaForm.controls.nombre.valid && (categoriaForm.controls.nombre.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!categoriaForm.controls.nombre.valid && (categoriaForm.controls.nombre.dirty || submitAttempt)">
+        <p>Solo Letras son permitidas.</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Estatus:</ion-label>
+        <ion-select interface="popover" formControlName="estatus" [class.invalid]="!categoriaForm.controls.estatus.valid && (categoriaForm.controls.estatus.dirty || submitAttempt)">
+          <ion-option value=true>Activa</ion-option>
+          <ion-option value=false>Inactiva</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="!categoriaForm.controls.estatus.valid && (categoriaForm.controls.estatus.dirty || submitAttempt)">
+        <p>Seleccione una opcion.</p>
+      </ion-item>
+    </ion-list>
+    <button ion-button block (click)="guardarCategoria()">Guardar</button>
+    <button ion-button (click)="closeModal()">Cancelar</button>
+  </form>
+</ion-content>

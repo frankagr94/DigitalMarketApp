@@ -15,9 +15,14 @@
         <ion-icon ios="ios-search" md="md-search"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="usuario != null">
       <button ion-button (click)="goToCart()">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end *ngIf="usuario != null">
+      <button ion-button (click)="logOut()">
+        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -29,10 +34,11 @@
 <ion-content class="home">
 
   <ion-list class="card-md">
-      <ion-row *ngFor="let cat of categorias" (click)="openCategoria(cat)">
+      <ion-row *ngFor="let cat of categorias;" (click)="openCategoria(cat.id)">
         <ion-item>
           <ion-avatar item-start>
-            <img src="{{cat.imagen}}">
+              <cl-image public-id="http://res.cloudinary.com/digitalmarket/image/upload/v1528764577/sample.jpg"></cl-image>
+            <!--<img src="{{cat.imagen}}">-->
           </ion-avatar>
           <h1>{{cat.nombre}}</h1>
         </ion-item>

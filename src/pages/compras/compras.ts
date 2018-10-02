@@ -34,11 +34,11 @@ export class ComprasPage {
   }
 
   goToCart() {
-    this.navCtrl.setRoot(CarritoPage);
+    this.navCtrl.push(CarritoPage);
   }
 
   goHome() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(HomePage);
   }
 
   search() {

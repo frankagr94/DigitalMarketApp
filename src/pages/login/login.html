@@ -23,11 +23,6 @@
           <ion-icon ios="ios-search" md="md-search"></ion-icon>
         </button>
       </ion-buttons>
-      <ion-buttons end>
-        <button ion-button (click)="goToCart()">
-          <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
-        </button>
-      </ion-buttons>
     </ion-navbar>
     </ion-header>
     <ion-content >
@@ -39,28 +34,27 @@
       <ion-list>
       <form [formGroup]="loginForm" (ngSubmit)="login()">
         <ion-item>
-        <ion-icon name="ios-person" item-start></ion-icon>
-        <ion-label floating>Usuario</ion-label>
-        <ion-input [formControl]="username" type="text"></ion-input>
+          <ion-icon name="ios-person" item-start></ion-icon>
+          <ion-label floating>Cedula</ion-label>
+          <ion-input formControlName="cedula" type="text" maxlength="8"></ion-input>
         </ion-item>
         <ion-item>
-        <ion-icon name="md-lock" item-start></ion-icon>
-        <ion-label floating>Contraseña</ion-label>
-        <ion-input [formControl]="password" type="password"></ion-input>
+          <ion-icon name="md-lock" item-start></ion-icon>
+          <ion-label floating>Contraseña</ion-label>
+          <ion-input formControlName="password" type="password" maxlength="8"></ion-input>
         </ion-item>
-        <ion-item [hidden]="!errorMessage"><label>{{errorMessage}}</label></ion-item>
       </form>
         <div>
           <ion-row>
           <ion-col>
-              <h6 (click)="openPage()">Registrarse</h6>
+              <h6 (click)="registrarse()">Registrarse</h6>
           </ion-col>
           <ion-col>
               <h6 (click)="openPage()">Olvido Contraseña?</h6>
           </ion-col>
         </ion-row>
           </div>
-        <button ion-button block type="submit" (click)="openPage()">Entrar</button>
+        <button ion-button block type="submit" (click)="login()">Entrar</button>
       </ion-list>
     </ion-card> 
    </ion-content>

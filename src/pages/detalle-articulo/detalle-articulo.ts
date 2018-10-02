@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { CarritoPage } from '../carrito/carrito';
 import { HomePage } from '../home/home';
+import { TimelinePage } from '../timeline/timeline';
+import { ServicioProvider } from '../../providers/servicio/servicio';
+import { LoginservicioProvider } from '../../providers/loginservicio/loginservicio';
+
 
 /**
  * Generated class for the DetalleArticuloPage page.
@@ -17,19 +21,25 @@ import { HomePage } from '../home/home';
 })
 export class DetalleArticuloPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  articulo: any
+  usuario: any
+  constructor(public navCtrl: NavController, public navParams: NavParams, private loginservice: LoginservicioProvider, public servicio: ServicioProvider) {
+    this.articulo = this.navParams.get('data');
+    this.usuario = this.loginservice.getUsuarioInfo();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetalleArticuloPage');
+    console.log(this.articulo);
   }
 
   goToCart() {
-    this.navCtrl.setRoot(CarritoPage);
+    this.navCtrl.push(CarritoPage);
   }
 
   goHome() {
-    this.navCtrl.setRoot(HomePage);
+    if(this.loginservice.getUsuarioInfo()==null)
+      {this.navCtrl.setRoot(HomePage);}
+      else this.navCtrl.setRoot(TimelinePage);
   }
 
 }

@@ -16,14 +16,14 @@
           <ion-icon ios="ios-home" md="md-home"></ion-icon>
         </button>
       </ion-buttons>
-    <ion-buttons end>
-        <button ion-button (click)="search()">
-          <ion-icon ios="ios-search" md="md-search"></ion-icon>
-        </button>
-      </ion-buttons>
-    <ion-buttons end>
+      <ion-buttons end>
       <button ion-button (click)="goToCart()">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="logOut()">
+        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -33,28 +33,50 @@
 
 <ion-content padding class="vender">
 
-  <ion-item>
-    <ion-avatar item-start class="img" (click)="onSelectPhoto()">
-      <img src="assets/imgs/noimage.png">
-    </ion-avatar> 
-  </ion-item>
-  <form [formGroup]="form" (ngSubmit)="saveData()" class="form">
+    <ion-item>
+      <div class="img" (click)="onSelectPhoto()">
+        <img-loader [src]="rutaImagen.ruta" fallback="http://res.cloudinary.com/digitalmarket/image/upload/v1528924814/sin_imagen.png" useImg></img-loader>
+      </div>
+    </ion-item>
+
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Por favor llene todos los campos.</p>
+  <form [formGroup]="form">
     <ion-list>
+        <ion-input formControlName="imagen" type="hidden" [(ngModel)]="rutaImagen.ruta"></ion-input>
       <ion-item>
         <ion-label stacked>Titulo:</ion-label>
-        <ion-input formControlName="Titulo" type="text" placeholder="Titulo"></ion-input>
+        <ion-input formControlName="titulo" type="text" placeholder="Titulo" [class.invalid]="!form.controls.titulo.valid && (form.controls.titulo.dirty || submitAttempt)"></ion-input>
       </ion-item>
-    
+
       <ion-item>
         <ion-label stacked>Descripcion:</ion-label>
-        <ion-textarea formControlName="Descripcion" type="text" placeholder="Descripcion"></ion-textarea>
+        <ion-textarea formControlName="descripcion" type="text" placeholder="Descripcion" [class.invalid]="!form.controls.descripcion.valid && (form.controls.descripcion.dirty || submitAttempt)"></ion-textarea>
       </ion-item>
       <ion-item>
         <ion-label stacked>Precio:</ion-label>
-        <ion-input formControlName="Precio" type="text" placeholder="Precio"></ion-input>
+        <ion-input formControlName="precio" type="text" placeholder="Precio" [class.invalid]="!form.controls.precio.valid && (form.controls.precio.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!form.controls.precio.valid && (form.controls.precio.dirty || submitAttempt)">
+        <p>Solo numeros son permitidos.</p>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Categoria</ion-label>
+        <ion-select interface="popover" formControlName="categoria" placeholder="Categoria" [class.invalid]="!form.controls.categoria.valid && (form.controls.categoria.dirty || submitAttempt)">
+            <ion-option *ngFor="let cat of categorias" value="{{cat.id}}">{{cat.nombre}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Cantidad</ion-label>
+        <ion-select interface="popover" formControlName="cantidad" placeholder="Cantidad" [class.invalid]="!form.controls.cantidad.valid && (form.controls.cantidad.dirty || submitAttempt)">
+            <ion-option value="1">1</ion-option>
+            <ion-option value="2">2</ion-option>
+            <ion-option value="3">3</ion-option>
+            <ion-option value="4">4</ion-option>
+            <ion-option value="5">5</ion-option>
+        </ion-select>
       </ion-item>
     
-      <button ion-button block type="submit">Publicar</button>
+      <button ion-button block type="submit" (click)="saveData()">Publicar</button>
     </ion-list>
   </form>
 

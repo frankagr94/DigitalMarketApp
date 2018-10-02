@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ArticulosPage } from '../articulos/articulos';
 import { CarritoPage } from '../carrito/carrito';
 import { DetalleArticuloPage } from '../detalle-articulo/detalle-articulo';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -41,6 +42,10 @@ export class HomePage {
     ]
 
   }
+  
+  ionViewDidLoad() {
+   
+  }
 
   trackEvent() {
     let active = this.slider.getActiveIndex();
@@ -56,16 +61,20 @@ export class HomePage {
   search() {
   }
 
+  login(){
+    this.navCtrl.push(LoginPage);
+  }
+
   openPage() {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.navCtrl.setRoot(ArticulosPage);
+    this.navCtrl.push(ArticulosPage);
   }
 
   openArticulo(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.navCtrl.setRoot(page.component);
+    this.navCtrl.push(page.component);
   }
 
 }

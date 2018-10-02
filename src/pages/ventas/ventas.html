@@ -17,13 +17,13 @@
           </button>
         </ion-buttons>
       <ion-buttons end>
-        <button ion-button (click)="search()">
-          <ion-icon ios="ios-search" md="md-search"></ion-icon>
+        <button ion-button (click)="goToCart()">
+          <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
         </button>
       </ion-buttons>
       <ion-buttons end>
-        <button ion-button (click)="goToCart()">
-          <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+        <button ion-button (click)="logOut()">
+          <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
         </button>
       </ion-buttons>
     </ion-navbar>
@@ -34,31 +34,53 @@
 
   
   <ion-content padding>
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content>
+          </ion-refresher-content>
+      </ion-refresher>
+
       <div class="barra-activas">
           <p class="texto-barra">Activas</p>
       </div>
       <ion-list>
-          <ion-item *ngFor="let act of activas">
-            <ion-thumbnail item-start>
-              <img src="{{act.imagen}}">
-            </ion-thumbnail>
-            <h2>{{act.nombre}}</h2>
-            <p>BsF. {{act.precio}}</p>
-            <p>{{act.fecha}}</p>
-          </ion-item>
-        </ion-list>
+        <ion-row *ngFor="let act of activas">
+          <ion-item-sliding #item>
+            <ion-item>
+              <ion-thumbnail item-start>
+                  <img-loader [src]="act.foto" fallback="http://res.cloudinary.com/digitalmarket/image/upload/v1528924814/sin_imagen.png" useImg></img-loader>
+              </ion-thumbnail>
+              <h2>{{act.titulo}}</h2>
+              <p>BsF. {{act.articulo.precio}}</p>
+              <p>{{act.fecha}}</p>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="light" (click)="editarPublicacion(act)">Editar</button>
+              <button ion-button color="danger" (click)="cerrarPublicacion(act.id)">cerrar</button>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-row>
+      </ion-list>
 
     <div class="barra-cerradas">
       <p class="texto-barra">Cerradas</p>
     </div>
       <ion-list>
-          <ion-item *ngFor="let ina of cerradas">
-            <ion-thumbnail item-start>
-              <img src="{{ina.imagen}}">
-            </ion-thumbnail>
-            <h2>{{ina.nombre}}</h2>
-            <p>BsF. {{ina.precio}}</p>
-            <p>{{ina.fecha}}</p>
-          </ion-item>
-        </ion-list>
+        <ion-row *ngFor="let cerr of cerradas">
+          <ion-item-sliding #item2>
+            <ion-item>
+              <ion-thumbnail item-start>
+                  <img-loader [src]="cerr.foto" fallback="http://res.cloudinary.com/digitalmarket/image/upload/v1528924814/sin_imagen.png" useImg></img-loader>
+              </ion-thumbnail>
+              <h2>{{cerr.titulo}}</h2>
+              <p>BsF. {{cerr.precio}}</p>
+              <p>{{cerr.fecha}}</p>
+            </ion-item>
+            <ion-item-options side="right">
+              <button ion-button color="light" (click)="editarPublicacion(cerr)">Editar</button>
+              <button ion-button color="secondary" (click)="activarPublicacion(cerr.id)">Activar</button>
+              <button ion-button color="danger" (click)="eliminarPublicacion(cerr.id)">Eliminar</button>
+              </ion-item-options>
+          </ion-item-sliding>
+        </ion-row>
+      </ion-list>
 </ion-content>

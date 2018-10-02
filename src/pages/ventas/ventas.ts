@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { CarritoPage } from '../carrito/carrito';
 import { HomePage } from '../home/home';
+import { LoginservicioProvider } from '../../providers/loginservicio/loginservicio';
+import { ServicioProvider } from '../../providers/servicio/servicio';
+import { TimelinePage } from '../timeline/timeline';
 
 /**
  * Generated class for the VentasPage page.
@@ -17,37 +20,91 @@ import { HomePage } from '../home/home';
 })
 export class VentasPage {
 
-  activas: Array<{imagen: string, nombre: string, precio: string;}>;
-  cerradas: Array<{imagen: string, nombre: string, precio: string, fecha: string;}>;
+  activas: any;
+  cerradas: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-
-    this.activas = [
-      { imagen: 'assets/imgs/articulos/cornetas.png', nombre: 'Cornetas PC', precio: '1.500.000' },
-      { imagen: 'assets/imgs/articulos/monitor.png', nombre: 'Monitor LCD', precio: '10.500.000' },
-    ]
-
-    this.cerradas = [
-      { imagen: 'assets/imgs/articulos/zapatos.png', nombre: 'Zapatos Nike', precio: '3.999.000', fecha: '10-01-2018' },
-      { imagen: 'assets/imgs/articulos/reloj.png', nombre: 'Reloj Polo Ralph', precio: '1.100.000', fecha: '05-03-2018' },
-      { imagen: 'assets/imgs/articulos/cocina.png', nombre: 'Cocina 4 Hornillas', precio: '250.000.000', fecha: '22-11-2016' },
-    ]
+  constructor(public navCtrl: NavController, public navParams: NavParams, public events: Events, private loginservice: LoginservicioProvider, public servicio: ServicioProvider) {
 
   }
 
   ionViewDidLoad() {
+    this.cargarActivas();
+    this.cargarCerradas();
     console.log('ionViewDidLoad VentasPage');
   }
 
+  cargarActivas(){
+    this.servicio.getPublicacionesDeUsuario(this.loginservice.getUsuarioInfo().id, true).subscribe(res => {
+      let body = res.json();
+      this.activas = body;
+      console.log(this.activas);
+    });
+  }
+
+  cargarCerradas(){
+    this.servicio.getPublicacionesDeUsuario(this.loginservice.getUsuarioInfo().id, false).subscribe(res => {
+      let body = res.json();
+      this.cerradas = body;
+      console.log(this.activas);
+    });
+  }
+
   goToCart() {
-    this.navCtrl.setRoot(CarritoPage);
+    this.navCtrl.push(CarritoPage);
   }
 
   goHome() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.setRoot(TimelinePage);
   }
 
-  search() {
+  logOut(){
+    this.loginservice.logout().subscribe(succ => {
+      this.navCtrl.setRoot(HomePage);
+      this.events.publish('user:created', this.loginservice.getUsuarioInfo(), Date.now());
+    });
+  }
+
+  doRefresh(refresher) {
+    refresher.complete();
+    this.cargarActivas();
+    this.cargarCerradas();
+    console.log('refrescado');
+  }
+
+  cerrarPublicacion(id){
+    let postParams = {
+      estatus: false
+    }
+    this.servicio.editarPublicacion(id, postParams).subscribe(res =>{
+      console.log(res.json())
+      this.cargarActivas();
+      this.cargarCerradas();
+    }, error => {
+      console.log(error);// Muestra error en consola
+    });
+  }
+
+  eliminarPublicacion(id){
+    this.servicio.eliminarPublicacion(id).subscribe(res =>{
+      console.log('Eliminada exitosamente')
+      this.cargarActivas();
+      this.cargarCerradas();
+    }, error => {
+      console.log(error);// Muestra error en consola
+    });
+  }
+
+  activarPublicacion(id){
+    let postParams = {
+      estatus: true
+    }
+    this.servicio.editarPublicacion(id, postParams).subscribe(res =>{
+      console.log('Activada exitosamente')
+      this.cargarActivas();
+      this.cargarCerradas();
+    }, error => {
+      console.log(error);// Muestra error en consola
+    });
   }
 
 }

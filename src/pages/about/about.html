@@ -10,9 +10,14 @@
         <ion-icon ios="ios-home" md="md-home"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-buttons end>
+    <ion-buttons end *ngIf="usuario != null">
       <button ion-button (click)="goToCart()">
         <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end *ngIf="usuario != null">
+      <button ion-button (click)="logOut()">
+        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>

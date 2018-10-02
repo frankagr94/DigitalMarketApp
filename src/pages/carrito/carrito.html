@@ -15,6 +15,11 @@
           <ion-icon ios="ios-search" md="md-search"></ion-icon>
         </button>
       </ion-buttons>
+      <ion-buttons end>
+        <button ion-button (click)="logOut()">
+          <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+        </button>
+      </ion-buttons>
     </ion-navbar>
     <ion-toolbar color="primary">
       <ion-searchbar></ion-searchbar>
@@ -23,16 +28,21 @@
 
 
 <ion-content padding class="showcart" style="background-color: #f4f4f4;">
-    <!-- First Item -->
-      <ion-card>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+      <ion-card *ngFor="let art of articulos">
         <ion-card-content>
           <ion-row>
-            <h2>Franela QuickSilver</h2>
+            <h2>{{art.articulo.nombre}}</h2>
           </ion-row>
           <ion-row>
             <ion-col width-80 style="margin-top: 10px;">
-              <h4 class="h4">Vendedor: <small>Deimon Garcia</small></h4>
-              <h4 class="h4">Precio: <small>BsF. 1.899.000</small></h4>
+              <h4 class="h4">Vendedor: <small>{{art.articulo.publicacion.usuario.nombre}} {{art.articulo.publicacion.usuario.apellido}}</small></h4>
+              <h4 class="h4">Precio: <small>{{art.articulo.precio}} BsF</small></h4>
               <h4 class="h4">Estatus: <small style="color: #388e3c; font-size: 12px">Disponible</small></h4>
               <ion-select [(ngModel)]="quantity">
                 <ion-option value="1" [selected]="1">1</ion-option>
@@ -42,47 +52,16 @@
                 
             </ion-col>
             <ion-col width-25>
-                <img src="assets/imgs/articulos/franela.png" class="imagen"/>
+              <img-loader [src]="art.articulo.publicacion.foto"></img-loader>
             </ion-col>
           </ion-row>
         </ion-card-content>
         <ion-row class="row">
-          <ion-col width-50 style="background: red;">
+          <ion-col width-50 style="background: red;" (click)="quitarDelCarrito(art.id)">
             <p>Quitar del Carrito</p>
           </ion-col>
         </ion-row>
       </ion-card>
-    
-      <!-- Second Item -->
-      <ion-card class="card-md">
-          <ion-card-content>
-            <ion-row>
-              <h2>Cocina 4 Hornillas</h2>
-            </ion-row>
-            <ion-row>
-              <ion-col width-80 style="margin-top: 10px;">
-                <h4 class="h4">Vendedor: <small>Adam Cortés</small></h4>
-                <h4 class="h4">Precio: <small>BsF. 250.000.000</small></h4>
-                <h4 class="h4">Estatus: <small style="color: #388e3c; font-size: 12px">Disponible</small></h4>
-                <ion-select [(ngModel)]="quantity">
-                  <ion-option value="1" [selected]="1">1</ion-option>
-                  <ion-option value="2">2</ion-option>
-                  <ion-option value="3">3</ion-option>
-                </ion-select>  
-              </ion-col>
-              <ion-col width-25>
-                  <img src="assets/imgs/articulos/cocina.png" class="imagen"/>
-              </ion-col>
-            </ion-row>
-          </ion-card-content>
-          <ion-row class="row">
-            <ion-col width-50 style="background: red;">
-              <p>Quitar del Carrito</p>
-            </ion-col>
-          </ion-row>
-        </ion-card>
-    
-    
     
     
     <!-- Price Details -->
@@ -97,7 +76,7 @@
               <p>IVA:</p>
             </ion-col>
             <ion-col width-30>
-                <p style="text-align: right;">BsF. 251.899.000</p>
+                <p style="text-align: right;">{{monto}} BsF</p>
                 <p style="text-align: right;color: #388e3c;">No Aplica</p>
             </ion-col>
           </ion-row>
@@ -108,6 +87,6 @@
     
     <ion-footer style="background-color: #fff;">
       <ion-row>
-          <button ion-button full (click)="goToCheckout()">Procesar Compra</button>
+          <button ion-button full (click)="goToCheckout(monto)">Procesar Compra</button>
       </ion-row>
     </ion-footer>

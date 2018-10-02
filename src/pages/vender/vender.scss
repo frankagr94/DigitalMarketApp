@@ -23,10 +23,15 @@
 	}
 
 	ion-item img {
-		height: 150px;
+		height: inherit;
 		width: inherit;
 		display: inline-block;
-		margin-left: 50%;
+		margin-left: 0%;
+		margin-right: 2%;
 		position: relative;
+	}
+	
+	.invalid {
+		border: 1px solid #ea6153;
 	}
 }

@@ -1,42 +1,54 @@
-<!--
-  Generated template for the AdminUsuariosPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-    <ion-navbar no-border-bottom color="primary">
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Administrar Usuarios</ion-title>
-  
-      <ion-buttons end>
+	<ion-navbar no-border-bottom color="primary">
+		<button ion-button menuToggle>
+			<ion-icon name="menu"></ion-icon>
+		</button>
+		<ion-title>Administrar Categorias</ion-title>
+
+		<ion-buttons end>
         <button ion-button (click)="goHome()">
-          <ion-icon ios="ios-home" md="md-home"></ion-icon>
+            <ion-icon ios="ios-home" md="md-home"></ion-icon>
         </button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="goToCart()">
+        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-buttons end>
+      <button ion-button (click)="logOut()">
+        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+      </button>
+    </ion-buttons>
+	</ion-navbar>
+</ion-header>
 
 
 <ion-content padding>
-    <ion-searchbar placeholder="Buscar Usuario"></ion-searchbar>
-    <ion-list>
-        <ion-row *ngFor="let u of usuarios">
+
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content>
+        </ion-refresher-content>
+      </ion-refresher>
+
+  <div>
+  </div>
+  <ion-list>
+      <ion-row *ngFor="let usu of usuarios">
           <ion-item-sliding #item>
-            <ion-item>
-              <ion-avatar item-start>
-                <img src="{{u.imagen}}">
-              </ion-avatar>
-              <h1>{{u.nombre}}</h1>
-            </ion-item>
-            <div class="fila"></div>
-            <ion-item-options side="right">
-              <button ion-button color="light">Editar</button>
-              <button ion-button color="danger">Suspender</button>
-            </ion-item-options>
+              <ion-item>
+                  
+      <ion-avatar item-start>
+            <img-loader [src]="usu.foto" fallback="http://res.cloudinary.com/digitalmarket/image/upload/v1528924814/sin_imagen.png" useImg></img-loader>
+      </ion-avatar>
+                  <h1>{{usu.nombre +" "+ usu.apellido}}</h1>
+              </ion-item>
+              <div class="fila"></div>
+              <ion-item-options side="right">
+                  <button ion-button color="danger" (click)="eliminarUsuario(usu.id)">Eliminar</button>
+              </ion-item-options>
           </ion-item-sliding>
-        </ion-row>
-      </ion-list>
+      </ion-row>
+  </ion-list>
+
 </ion-content>

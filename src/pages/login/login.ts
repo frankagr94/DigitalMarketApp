@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController, LoadingController, Loading, Events } from 'ionic-angular';
 import {FormBuilder, FormGroup,Validators, AbstractControl} from '@angular/forms';
 import { CarritoPage } from '../carrito/carrito';
 import { TimelinePage } from '../timeline/timeline';
 import { HomePage } from '../home/home';
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { RegistroPage } from '../registro/registro';
+import { LoginservicioProvider } from '../../providers/loginservicio/loginservicio';
 
 
 @Component({
@@ -21,23 +17,25 @@ export class LoginPage {
   password: AbstractControl;
   errorMessage: string = null;
   loginForm: FormGroup;
+  credenciales: any;
+
+  loading: Loading;
+  usuarioActual: any;
   
-  constructor(private navCtrl: NavController, private fb: FormBuilder) {
+  constructor(private navCtrl: NavController, private fb: FormBuilder, private loginservice: LoginservicioProvider, private toastCtrl: ToastController, private loadingCtrl: LoadingController, public events: Events) {
   this.loginForm = fb.group({
-  'username': ['', Validators.compose([Validators.required])],
-  'password': ['', Validators.compose([Validators.required])]
+    cedula: ['', Validators.compose([Validators.maxLength(8), Validators.pattern('[0-9]*'), Validators.required])],
+    password: ['', Validators.compose([Validators.maxLength(8), Validators.required])]
   });
-  
-  this.username = this.loginForm.controls['username'];
-  this.password = this.loginForm.controls['password'];
+
   }
 
   goToCart() {
-    this.navCtrl.setRoot(CarritoPage);
+    this.navCtrl.push(CarritoPage);
   }
 
-  openPage() {
-    this.navCtrl.setRoot(TimelinePage);
+  registrarse() {
+    this.navCtrl.setRoot(RegistroPage);
   }
 
   goHome() {
@@ -45,6 +43,49 @@ export class LoginPage {
   }
 
   search() {
+  }
+
+  public login() {
+    this.showLoading()
+    let promise = new Promise((resolve, reject) => {
+      this.loginservice.encontrarUsuario(this.loginForm.value.cedula).toPromise().then(res => {
+        this.usuarioActual = res.json();
+        console.log(this.usuarioActual);
+        this.loginservice.login(this.usuarioActual, this.loginForm.value.password).subscribe(allowed => {
+          if (allowed) {
+            console.log(allowed);        
+            this.navCtrl.setRoot(TimelinePage);
+            this.events.publish('user:created', this.loginservice.getUsuarioInfo(), Date.now());
+            this.presentarMensaje("Bienvenido "+this.loginservice.getUsuarioInfo().nombre);
+          } else {
+            console.log(allowed);
+            this.loading.dismiss();
+            this.presentarMensaje("Cedula o Password Incorrectas...");
+          }
+        },
+          error => {
+            this.presentarMensaje(error);
+          });
+      })
+    });
+  }
+ 
+  presentarMensaje(mensaje) {
+    let toast = this.toastCtrl.create({
+      message: mensaje,
+      duration: 4000,
+      position: 'bottom'
+    });
+  
+    toast.present();
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Por favor espere...',
+      dismissOnPageChange: true
+    });
+    this.loading.present();
   }
   
  }

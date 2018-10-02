@@ -15,81 +15,89 @@
           <ion-icon ios="ios-search" md="md-search"></ion-icon>
         </button>
       </ion-buttons>
-    <ion-buttons end>
-      <button ion-button (click)="goToCart()">
-        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
-      </button>
-    </ion-buttons>
   </ion-navbar>
  
 </ion-header>
 <ion-content>
   
 <h4  text-center>Ingresa tus Datos</h4>
-<form [formGroup]="form" (ngSubmit)="saveData()">
+<p *ngIf="submitAttempt" style="color: #ea6153;">Por favor llene todos los campos.</p>
+<form [formGroup]="registrarForm">
   <ion-list>
     <ion-item>
       <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
-      <ion-label stacked>Usuario:</ion-label>
-      <ion-input formControlName="Usuario" type="text" placeholder="Usuario"></ion-input>
+      <ion-label stacked>Cedula:</ion-label>
+      <ion-input formControlName="cedula" type="text" maxlength="8" placeholder="Cedula" [class.invalid]="!registrarForm.controls.cedula.valid && (registrarForm.controls.cedula.dirty || submitAttempt)"></ion-input>
     </ion-item>
-  
+    <ion-item *ngIf="!registrarForm.controls.cedula.valid && (registrarForm.controls.cedula.dirty || submitAttempt)">
+      <p>Solo numeros son permitidos.</p>
+    </ion-item>
     <ion-item>
       <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
       <ion-label stacked>Contraseña:</ion-label>
-      <ion-input formControlName="Contraseña" type="text" placeholder="Contraseña"></ion-input>
+      <ion-input formControlName="password" ng-if="!showPassword" type="password" maxlength="8" placeholder="Contraseña" [class.invalid]="!registrarForm.controls.password.valid && (registrarForm.controls.password.dirty || submitAttempt)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
       <ion-label stacked>Nombre:</ion-label>
-      <ion-input formControlName="Nombre" type="text" placeholder="Nombre"></ion-input>
+      <ion-input formControlName="nombre" type="text" maxlength="15" placeholder="Nombre" [class.invalid]="!registrarForm.controls.nombre.valid && (registrarForm.controls.nombre.dirty || submitAttempt)"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!registrarForm.controls.nombre.valid && (registrarForm.controls.nombre.dirty || submitAttempt)">
+      <p>Solo letras son permitidas.</p>
     </ion-item>
     <ion-item>
       <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
       <ion-label stacked>Apellido:</ion-label>
-      <ion-input formControlName="Apellido" type="text" placeholder="Apellido"></ion-input>
+      <ion-input formControlName="apellido" type="text" maxlength="15" placeholder="Apellido" [class.invalid]="!registrarForm.controls.apellido.valid && (registrarForm.controls.apellido.dirty || submitAttempt)"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!registrarForm.controls.apellido.valid && (registrarForm.controls.apellido.dirty || submitAttempt)">
+      <p>Solo letras son permitidas.</p>
     </ion-item>
     <ion-item>
       <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
       <ion-label stacked>Telefono:</ion-label>
-      <ion-input formControlName="Telefono" type="text" placeholder="Telefono"></ion-input>
+      <ion-input formControlName="telefono" type="text" maxlength="12"placeholder="Telefono" [class.invalid]="!registrarForm.controls.telefono.valid && (registrarForm.controls.telefono.dirty || submitAttempt)"></ion-input>
     </ion-item>
     <ion-item>
       <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
       <ion-label stacked>Correo:</ion-label>
-      <ion-input formControlName="Correo" type="text" placeholder="Correo"></ion-input>
+      <ion-input formControlName="email" type="text" maxlength="50" placeholder="Correo" [class.invalid]="!registrarForm.controls.email.valid && (registrarForm.controls.email.dirty || submitAttempt)"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!registrarForm.controls.email.valid && (registrarForm.controls.email.dirty || submitAttempt)">
+      <p>Formato Valido: ejemplo@algo.com</p>
     </ion-item>
     <ion-item>
         <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
         <ion-label stacked>Pais</ion-label>
-        <ion-select interface="popover" placeholder="Pais">
-            <ion-option value="Colombia">Colombia</ion-option>
-            <ion-option value="Venezuela">Venezuela</ion-option>
-            <ion-option value="Mexico">Mexico</ion-option>
-            <ion-option value="Argentina">Argentina</ion-option>
+        <ion-select interface="popover" formControlName="pais" placeholder="Pais" [class.invalid]="!registrarForm.controls.pais.valid && (registrarForm.controls.pais.dirty || submitAttempt)">
+            <ion-option *ngFor="let pais of paises" value="{{pais.id}}" (ionSelect)="onSelectPais($event, pais)">{{pais.nombre}}</ion-option>
         </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!registrarForm.controls.pais.valid && (registrarForm.controls.pais.dirty || submitAttempt)">
+      <p>Seleccione una opcion.</p>
     </ion-item>
     <ion-item>
         <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
         <ion-label stacked>Estado</ion-label>
-        <ion-select interface="popover" placeholder="Estado">
-            <ion-option value="Lara">Lara</ion-option>
-            <ion-option value="Merida">Mérida</ion-option>
-            <ion-option value="Zulia">Zulia</ion-option>
-            <ion-option value="Falcon">Falcon</ion-option>
+        <ion-select interface="popover" formControlName="estado" placeholder="Estado" [class.invalid]="!registrarForm.controls.estado.valid && (registrarForm.controls.estado.dirty || submitAttempt)">
+            <ion-option *ngFor="let estado of estados" value="{{estado.id}}" (ionSelect)="onSelectEstado($event, estado)">{{estado.nombre}}</ion-option>
         </ion-select>
+    </ion-item>
+    <ion-item *ngIf="!registrarForm.controls.estado.valid && (registrarForm.controls.estado.dirty || submitAttempt)">
+      <p>Seleccione una opcion.</p>
     </ion-item>
     <ion-item>
         <ion-icon name="ios-arrow-dropright-circle-outline" item-start></ion-icon>
         <ion-label stacked>Ciudad</ion-label>
-        <ion-select interface="popover" placeholder="Ciudad">
-            <ion-option value="Barquisimeto">Barquisimeto</ion-option>
-            <ion-option value="Cabudare">Cabudare</ion-option>
-            
+        <ion-select interface="popover" formControlName="ciudad" placeholder="Ciudad" [class.invalid]="!registrarForm.controls.ciudad.valid && (registrarForm.controls.ciudad.dirty || submitAttempt)">
+            <ion-option *ngFor="let ciudad of ciudades" value="{{ciudad.id}}">{{ciudad.nombre}}</ion-option>
         </ion-select>
+        <ion-item *ngIf="!registrarForm.controls.ciudad.valid && (registrarForm.controls.ciudad.dirty || submitAttempt)">
+          <p>Seleccione una opcion.</p>
+        </ion-item>
     </ion-item>
   
-    <button ion-button block type="submit">Registrar</button>
+    <button ion-button block type="submit" (click)="registrar()">Registrar</button>
     
   </ion-list>
  

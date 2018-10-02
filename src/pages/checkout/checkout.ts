@@ -17,7 +17,10 @@ import { HomePage } from '../home/home';
 })
 export class CheckoutPage {
 
+  monto: number = 0;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.monto = this.navParams.get('data');
   }
 
   ionViewDidLoad() {
@@ -25,11 +28,11 @@ export class CheckoutPage {
   }
 
   goToCart() {
-    this.navCtrl.setRoot(CarritoPage);
+    this.navCtrl.push(CarritoPage);
   }
 
   goHome() {
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(HomePage);
   }
 
 }

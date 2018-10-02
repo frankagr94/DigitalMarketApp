@@ -15,13 +15,16 @@
             <ion-icon item-left [name]="p.icon"></ion-icon>
             {{ p.title}}
       </button>
+    <div *ngIf="usuarioActivo != null">
       <div class="barra">
         <h5>Usuario</h5>
       </div>
       <button ion-item menuClose *ngFor="let u of usuario" (click)="openPage(u)">
           <ion-icon item-left [name]="u.icon"></ion-icon>
           {{ u.title}}
-    </button>
+    </button>.
+  </div>
+  <div *ngIf="usuarioActivo != null && usuarioActivo.rolId == 1">
     <div class="barra">
       <h5>Administrador</h5>
     </div>
@@ -29,6 +32,7 @@
           <ion-icon item-left [name]="a.icon"></ion-icon>
           {{ a.title}}
     </button>
+  </div>
     </ion-list>
   </ion-content>
 

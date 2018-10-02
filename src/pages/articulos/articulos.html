@@ -31,17 +31,19 @@
 
     <ion-grid>
       <ion-row>
-            <ion-col col-33 *ngFor="let post of populares"  class="card card-1">
-              <div (click)="openPage(post)">
-                <img src="{{post.imagen}}" class="imagen-popular"/>
-                <div class="nombre-populares">
-                    <p class="text-nombre">{{post.nombre}}</p>
+            <ion-col col-33 *ngFor="let art of articulos"  class="card card-1">
+              <div (click)="verArticulo(art)">
+                <div class="imagen-popular">
+                  <img [src]="art.foto" class="imagen-popular">
+                </div>
+                  <div class="nombre-populares">
+                    <p class="text-nombre">{{art.titulo}}</p>
                 </div>
                 <div class="precio-populares">
-                    <p class="text-precio">BsF. {{post.precio}}</p>
+                    <p class="text-precio">BsF. {{art.articulo.precio}}</p>
                 </div>
                 <div>
-                    <p class="text-likes"><ion-icon name="star"></ion-icon> {{post.likes}}</p>
+                    <p class="text-likes"><ion-icon name="star"></ion-icon> {{art.likes}}</p>
                 </div>
               </div>
             </ion-col>
